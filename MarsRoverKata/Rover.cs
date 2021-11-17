@@ -19,12 +19,12 @@
             {
                 if (command == 'f' || command == 'b')
                 {
-                    moveTo(command);
+                    move(command);
                 }
             }
         }
 
-        private void moveTo(char command)
+        private void move(char command)
         {
             if (command == 'f')
             {
