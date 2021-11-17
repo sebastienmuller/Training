@@ -19,12 +19,31 @@
             {
                 if (command == 'f' || command == 'b')
                 {
-                    move(command);
+                    Move(command);
+                }
+                else if (command == 'l')
+                {
+                    if (_direction == "N")
+                    {
+                        _direction = "W";
+                    }
+                    else if (_direction == "W")
+                    {
+                        _direction = "S";
+                    }
+                    else if (_direction == "S")
+                    {
+                        _direction = "E";
+                    }
+                    else if (_direction == "E")
+                    {
+                        _direction = "N";
+                    }
                 }
             }
         }
 
-        private void move(char command)
+        private void Move(char command)
         {
             if (command == 'f')
             {

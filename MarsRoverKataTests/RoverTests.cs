@@ -45,5 +45,19 @@ namespace MarsRoverKataTests
 
             Assert.AreEqual(expectedResult, rover.ToString());
         }
+
+        [DataTestMethod]
+        [DataRow(1, 1, "N", "l", "(1,1) - W")]
+        [DataRow(1, 1, "W", "l", "(1,1) - S")]
+        [DataRow(1, 1, "S", "l", "(1,1) - E")]
+        [DataRow(1, 1, "E", "l", "(1,1) - N")]
+        public void RoverShouldTurnLeftWhenLeftCommandIsReceived(int startingX, int startingY, string direction, string command, string expectedResult)
+        {
+            var rover = new Rover(startingX, startingY, direction);
+
+            rover.ExecuteCommand(command);
+
+            Assert.AreEqual(expectedResult, rover.ToString());
+        }
     }
 }
