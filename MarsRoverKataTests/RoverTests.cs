@@ -17,11 +17,12 @@ namespace MarsRoverKataTests
          */
 
         [DataTestMethod]
-        [DataRow("f", "(1,2) - N")]
-        [DataRow("ff", "(1,3) - N")]
-        public void RoverShouldMoveForwardWhenForwardCommandIsReceived(string command, string expectedResult)
+        [DataRow(1, 1, "N", "f", "(1,2) - N")]
+        [DataRow(1, 1, "N", "ff", "(1,3) - N")]
+        [DataRow(2, 2, "N", "ff", "(2,4) - N")]
+        public void RoverShouldMoveForwardWhenForwardCommandIsReceived(int startingX, int startingY, string direction, string command, string expectedResult)
         {
-            var rover = new Rover();
+            var rover = new Rover(startingX, startingY, direction);
             
             rover.ExecuteCommand(command);
             

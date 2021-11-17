@@ -2,11 +2,15 @@
 {
     public class Rover
     {
-        private int positionY;
+        private int _positionY;
+        private int _positionX;
+        string _direction;
 
-        public Rover()
+        public Rover(int startingX, int startingY, string direction)
         {
-            positionY = 1;
+            _positionY = startingY;
+            _positionX = startingX;
+            _direction = direction;
         }
 
         public void ExecuteCommand(string commands)
@@ -15,14 +19,14 @@
             {
                 if (command == 'f')
                 {
-                    positionY++;
+                    _positionY++;
                 }
             }
         }
 
         public override string ToString()
         {
-            return $"(1,{positionY}) - N";
+            return $"({_positionX},{_positionY}) - {_direction}";
         }
     }
 }
