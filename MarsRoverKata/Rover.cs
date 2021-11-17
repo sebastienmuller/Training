@@ -36,6 +36,13 @@
                         _positionX--;
                     }
                 }
+                else if (command == 'b')
+                {
+                    if (_direction == "N")
+                    {
+                        _positionY--;
+                    }
+                }
             }
         }
 
