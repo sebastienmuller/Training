@@ -41,19 +41,19 @@
 
         private void MoveForward()
         {
-            if (_orientation.Direction == "N")
+            if (_orientation.IsFacingNorth())
             {
                 MoveUp();
             }
-            else if (_orientation.Direction == "S")
+            else if (_orientation.IsFacingSouth())
             {
                 MoveDown();
             }
-            else if (_orientation.Direction == "E")
+            else if (_orientation.IsFacingEast())
             {
                 MoveRight();
             }
-            else if (_orientation.Direction == "W")
+            else if (_orientation.IsFacingWest())
             {
                 MoveLeft();
             }
@@ -61,19 +61,19 @@
 
         private void MoveBackward()
         {
-            if (_orientation.Direction == "N")
+            if (_orientation.IsFacingNorth())
             {
                 MoveDown();
             }
-            else if (_orientation.Direction == "S")
+            else if (_orientation.IsFacingSouth())
             {
                 MoveUp();
             }
-            else if (_orientation.Direction == "E")
+            else if (_orientation.IsFacingEast())
             {
                 MoveLeft();
             }
-            else if (_orientation.Direction == "W")
+            else if (_orientation.IsFacingWest())
             {
                 MoveRight();
             }

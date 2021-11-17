@@ -31,5 +31,25 @@
             }
             Direction = Directions[newDirectionIndex];
         }
+
+        public bool IsFacingNorth()
+        {
+            return Direction == "N";
+        }
+
+        public bool IsFacingSouth()
+        {
+            return Direction == "S";
+        }
+
+        public bool IsFacingWest()
+        {
+            return Direction == "W";
+        }
+
+        public bool IsFacingEast()
+        {
+            return Direction == "E";
+        }
     }
 }
