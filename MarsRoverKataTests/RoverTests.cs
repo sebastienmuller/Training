@@ -16,6 +16,8 @@ namespace MarsRoverKataTests
          *   Implement obstacle detection before each move to a new square. If a given sequence of commands encounters an obstacle, the rover moves up to the last possible point, aborts the sequence and reports the obstacle.
          */
 
+        private Grid _grid10By15 = new(10, 15);
+
         [DataTestMethod]
         [DataRow(1, 1, "N", "f", "(1,2) - N")]
         [DataRow(1, 1, "N", "ff", "(1,3) - N")]
@@ -25,7 +27,7 @@ namespace MarsRoverKataTests
         [DataRow(4, 1, "W", "f", "(3,1) - W")]
         public void RoverShouldMoveForwardWhenForwardCommandIsReceived(int startingX, int startingY, string direction, string command, string expectedResult)
         {
-            var rover = new Rover(startingX, startingY, direction);
+            var rover = new Rover(startingX, startingY, direction, _grid10By15);
             
             rover.ExecuteCommand(command);
             
@@ -39,7 +41,7 @@ namespace MarsRoverKataTests
         [DataRow(1, 1, "W", "b", "(2,1) - W")]
         public void RoverShouldMoveBackwardWhenBackwardCommandIsReceived(int startingX, int startingY, string direction, string command, string expectedResult)
         {
-            var rover = new Rover(startingX, startingY, direction);
+            var rover = new Rover(startingX, startingY, direction, _grid10By15);
 
             rover.ExecuteCommand(command);
 
@@ -53,7 +55,7 @@ namespace MarsRoverKataTests
         [DataRow(1, 1, "E", "l", "(1,1) - N")]
         public void RoverShouldTurnLeftWhenLeftCommandIsReceived(int startingX, int startingY, string direction, string command, string expectedResult)
         {
-            var rover = new Rover(startingX, startingY, direction);
+            var rover = new Rover(startingX, startingY, direction, _grid10By15);
 
             rover.ExecuteCommand(command);
 
@@ -67,7 +69,7 @@ namespace MarsRoverKataTests
         [DataRow(1, 1, "E", "r", "(1,1) - S")]
         public void RoverShouldTurnRightWhenRightCommandIsReceived(int startingX, int startingY, string direction, string command, string expectedResult)
         {
-            var rover = new Rover(startingX, startingY, direction);
+            var rover = new Rover(startingX, startingY, direction, _grid10By15);
 
             rover.ExecuteCommand(command);
 
@@ -81,7 +83,7 @@ namespace MarsRoverKataTests
         [DataRow(1, 15, "S", "b", "(1,1) - S")]
         public void RoverShouldContinueToMoveVerticallyWhenArrivingAtTheEdge(int startingX, int startingY, string direction, string command, string expectedResult)
         {
-            var rover = new Rover(startingX, startingY, direction);
+            var rover = new Rover(startingX, startingY, direction, _grid10By15);
 
             rover.ExecuteCommand(command);
 
@@ -95,7 +97,7 @@ namespace MarsRoverKataTests
         [DataRow(10, 1, "W", "b", "(1,1) - W")]
         public void RoverShouldContinueToMoveHorizontallyWhenArrivingAtTheEdge(int startingX, int startingY, string direction, string command, string expectedResult)
         {
-            var rover = new Rover(startingX, startingY, direction);
+            var rover = new Rover(startingX, startingY, direction, _grid10By15);
 
             rover.ExecuteCommand(command);
 

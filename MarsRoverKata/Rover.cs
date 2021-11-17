@@ -2,18 +2,17 @@
 {
     public class Rover
     {
-        private const int MaxHeight = 15;
-        private const int MaxWidth = 10;
-
         private int _positionY;
         private int _positionX;
         Orientation _orientation;
+        Grid _grid;
 
-        public Rover(int startingX, int startingY, string direction)
+        public Rover(int startingX, int startingY, string direction, Grid grid)
         {
             _positionY = startingY;
             _positionX = startingX;
             _orientation = new Orientation(direction);
+            _grid = grid;
         }
 
         public void ExecuteCommand(string commands)
@@ -81,7 +80,7 @@
 
         private void MoveUp()
         {
-            if(_positionY == MaxHeight)
+            if(_positionY == _grid.MaxHeight)
             {
                 _positionY = 1;
                 return;
@@ -93,7 +92,7 @@
         {
             if (_positionY == 1)
             {
-                _positionY = MaxHeight;
+                _positionY = _grid.MaxHeight;
                 return;
             }
             _positionY--;
@@ -103,7 +102,7 @@
         {
             if (_positionX == 1)
             {
-                _positionX = MaxWidth;
+                _positionX = _grid.MaxWidth;
                 return;
             }
             _positionX--;
@@ -111,7 +110,7 @@
 
         private void MoveRight()
         {
-            if (_positionX == MaxWidth)
+            if (_positionX == _grid.MaxWidth)
             {
                 _positionX = 1;
                 return;
