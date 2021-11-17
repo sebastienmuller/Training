@@ -29,6 +29,10 @@
                 {
                     TurnLeft();
                 }
+                else if (command == 'r')
+                {
+                    TurnRight();
+                }
             }
         }
 
@@ -72,7 +76,6 @@
             }
         }
 
-
         private void TurnLeft()
         {
             if (_direction == "N")
@@ -90,6 +93,26 @@
             else if (_direction == "E")
             {
                 _direction = "N";
+            }
+        }
+
+        private void TurnRight()
+        {
+            if (_direction == "N")
+            {
+                _direction = "E";
+            }
+            else if (_direction == "W")
+            {
+                _direction = "N";
+            }
+            else if (_direction == "S")
+            {
+                _direction = "W";
+            }
+            else if (_direction == "E")
+            {
+                _direction = "S";
             }
         }
 
