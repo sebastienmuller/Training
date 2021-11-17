@@ -17,43 +17,51 @@
         {
             foreach (var command in commands)
             {
-                if (command == 'f')
+                if (command == 'f' || command == 'b')
                 {
-                    if (_direction == "N")
-                    {
-                        _positionY++;
-                    }
-                    else if(_direction == "S")
-                    {
-                        _positionY--;
-                    }
-                    else if(_direction == "E")
-                    {
-                        _positionX++;
-                    }
-                    else if (_direction == "O")
-                    {
-                        _positionX--;
-                    }
+                    moveTo(command);
                 }
-                else if (command == 'b')
+            }
+        }
+
+        private void moveTo(char command)
+        {
+            if (command == 'f')
+            {
+                if (_direction == "N")
                 {
-                    if (_direction == "N")
-                    {
-                        _positionY--;
-                    }
-                    else if (_direction == "S")
-                    {
-                        _positionY++;
-                    }
-                    else if (_direction == "E")
-                    {
-                        _positionX--;
-                    }
-                    else if (_direction == "O")
-                    {
-                        _positionX++;
-                    }
+                    _positionY++;
+                }
+                else if (_direction == "S")
+                {
+                    _positionY--;
+                }
+                else if (_direction == "E")
+                {
+                    _positionX++;
+                }
+                else if (_direction == "O")
+                {
+                    _positionX--;
+                }
+            }
+            else if (command == 'b')
+            {
+                if (_direction == "N")
+                {
+                    _positionY--;
+                }
+                else if (_direction == "S")
+                {
+                    _positionY++;
+                }
+                else if (_direction == "E")
+                {
+                    _positionX--;
+                }
+                else if (_direction == "O")
+                {
+                    _positionX++;
                 }
             }
         }
