@@ -118,5 +118,18 @@ namespace MarsRoverKataTests
 
             Assert.AreEqual(expectedReport, report);
         }
+
+        [TestMethod]
+        [DataRow(1, 1, "E", " Xf", "Rover at (2,1) facing E")]
+        [DataRow(1, 1, "E", " fXfXXfXbXlX", "Rover at (3,1) facing N")]
+        [DataRow(1, 1, "E", "XbXfXfXfX", "Rover at (3,1) facing E")]
+        public void RoverShouldNotBeLostIfNoiseInCommands(int startingX, int startingY, string direction, string command, string expectedReport)
+        {
+            var rover = new Rover(new Coordinate(startingX, startingY), direction, _grid10By15);
+
+            var report = rover.ExecuteCommandsAndReport(command);
+
+            Assert.AreEqual(expectedReport, report);
+        }
     }
 }
