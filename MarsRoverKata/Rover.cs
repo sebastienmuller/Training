@@ -4,25 +4,49 @@ namespace MarsRoverKata
 {
     public class Rover
     {
-        private Coordinate _coordinate;
-        readonly Orientation _orientation;
         private readonly Grid _grid;
+        private readonly Orientation _orientation;
+
+        private Coordinate _coordinate;
+        private Coordinate _nextCoordinate;
+        private bool _obstacleEncountered;
 
         public Rover(Coordinate intialCoordinate, string direction, Grid grid)
         {
             _coordinate = intialCoordinate;
+            _nextCoordinate = intialCoordinate;
             _orientation = new Orientation(direction);
             _grid = grid;
         }
 
         public string ExecuteCommandsAndReport(string commands)
         {
+            ResetObstacleFlag();
             foreach (var command in commands)
             {
                 ExecuteCommand(command);
+                
+                DoesEncounterObstacle();
+                
+                if (_obstacleEncountered)
+                {
+                    break;
+                }
+                
+                _coordinate = _nextCoordinate;
             }
 
             return GetReport();
+        }
+
+        private void DoesEncounterObstacle()
+        {
+            _obstacleEncountered = _grid.Obstacles.Contains(_nextCoordinate);
+        }
+
+        private void ResetObstacleFlag()
+        {
+            _obstacleEncountered = false; ;
         }
 
         private void ExecuteCommand(char command)
@@ -47,7 +71,14 @@ namespace MarsRoverKata
 
         private string GetReport()
         {
-            return $"({_coordinate.X},{_coordinate.Y}) - {_orientation.Direction}";
+            var obstacleReport = string.Empty;
+
+            if (_obstacleEncountered)
+            {
+                obstacleReport = $"Obstacle ({_nextCoordinate.X},{_nextCoordinate.Y}) - ";
+            }
+
+            return $"{obstacleReport}Rover at ({_coordinate.X},{_coordinate.Y}) facing {_orientation.Direction}";
         }
 
         private void MoveForward()
@@ -94,40 +125,40 @@ namespace MarsRoverKata
         {
             if(_coordinate.Y == _grid.MaxHeight)
             {
-                _coordinate = new Coordinate(_coordinate.X, 1);
+                _nextCoordinate = new Coordinate(_coordinate.X, 1);
                 return;
             }
-            _coordinate = new Coordinate(_coordinate.X, _coordinate.Y + 1);
+            _nextCoordinate = new Coordinate(_coordinate.X, _coordinate.Y + 1);
         }
 
         private void MoveDown()
         {
             if (_coordinate.Y == 1)
             {
-                _coordinate = new Coordinate(_coordinate.X, _grid.MaxHeight);
+                _nextCoordinate = new Coordinate(_coordinate.X, _grid.MaxHeight);
                 return;
             }
-            _coordinate = new Coordinate(_coordinate.X, _coordinate.Y - 1);
+            _nextCoordinate = new Coordinate(_coordinate.X, _coordinate.Y - 1);
         }
 
         private void MoveLeft()
         {
             if (_coordinate.X == 1)
             {
-                _coordinate = new Coordinate(_grid.MaxWidth, _coordinate.Y);
+                _nextCoordinate = new Coordinate(_grid.MaxWidth, _coordinate.Y);
                 return;
             }
-            _coordinate = new Coordinate(_coordinate.X - 1, _coordinate.Y);
+            _nextCoordinate = new Coordinate(_coordinate.X - 1, _coordinate.Y);
         }
 
         private void MoveRight()
         {
             if (_coordinate.X == _grid.MaxWidth)
             {
-                _coordinate = new Coordinate(1, _coordinate.Y);
+                _nextCoordinate = new Coordinate(1, _coordinate.Y);
                 return;
             }
-            _coordinate = new Coordinate(_coordinate.X + 1, _coordinate.Y);
+            _nextCoordinate = new Coordinate(_coordinate.X + 1, _coordinate.Y);
         }
     }
 }

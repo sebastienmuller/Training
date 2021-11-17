@@ -1,5 +1,6 @@
 using MarsRoverKata;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 
 namespace MarsRoverKataTests
 {
@@ -17,91 +18,105 @@ namespace MarsRoverKataTests
          */
 
         private Grid _grid10By15 = new(10, 15);
+        private Grid _grid10By15WithObstacles = new(10, 15, new List<Coordinate> { { new(2, 1) } });
 
         [DataTestMethod]
-        [DataRow(1, 1, "N", "f", "(1,2) - N")]
-        [DataRow(1, 1, "N", "ff", "(1,3) - N")]
-        [DataRow(2, 2, "N", "ff", "(2,4) - N")]
-        [DataRow(1, 4, "S", "f", "(1,3) - S")]
-        [DataRow(1, 1, "E", "f", "(2,1) - E")]
-        [DataRow(4, 1, "W", "f", "(3,1) - W")]
-        public void RoverShouldMoveForwardWhenForwardCommandIsReceived(int startingX, int startingY, string direction, string command, string expectedResult)
+        [DataRow(1, 1, "N", "f", "Rover at (1,2) facing N")]
+        [DataRow(1, 1, "N", "ff", "Rover at (1,3) facing N")]
+        [DataRow(2, 2, "N", "ff", "Rover at (2,4) facing N")]
+        [DataRow(1, 4, "S", "f", "Rover at (1,3) facing S")]
+        [DataRow(1, 1, "E", "f", "Rover at (2,1) facing E")]
+        [DataRow(4, 1, "W", "f", "Rover at (3,1) facing W")]
+        public void RoverShouldMoveForwardWhenForwardCommandIsReceived(int startingX, int startingY, string direction, string command, string expectedReport)
         {
             var rover = new Rover(new Coordinate(startingX, startingY), direction, _grid10By15);
             
             var report = rover.ExecuteCommandsAndReport(command);
             
-            Assert.AreEqual(expectedResult, report);
+            Assert.AreEqual(expectedReport, report);
         }
 
         [DataTestMethod]
-        [DataRow(1, 2, "N", "b", "(1,1) - N")]
-        [DataRow(1, 2, "S", "b", "(1,3) - S")]
-        [DataRow(5, 2, "E", "b", "(4,2) - E")]
-        [DataRow(1, 1, "W", "b", "(2,1) - W")]
-        public void RoverShouldMoveBackwardWhenBackwardCommandIsReceived(int startingX, int startingY, string direction, string command, string expectedResult)
+        [DataRow(1, 2, "N", "b", "Rover at (1,1) facing N")]
+        [DataRow(1, 2, "S", "b", "Rover at (1,3) facing S")]
+        [DataRow(5, 2, "E", "b", "Rover at (4,2) facing E")]
+        [DataRow(1, 1, "W", "b", "Rover at (2,1) facing W")]
+        public void RoverShouldMoveBackwardWhenBackwardCommandIsReceived(int startingX, int startingY, string direction, string command, string expectedReport)
         {
             var rover = new Rover(new Coordinate(startingX, startingY), direction, _grid10By15);
 
             var report = rover.ExecuteCommandsAndReport(command);
 
-            Assert.AreEqual(expectedResult, report);
+            Assert.AreEqual(expectedReport, report);
         }
 
         [DataTestMethod]
-        [DataRow(1, 1, "N", "l", "(1,1) - W")]
-        [DataRow(1, 1, "W", "l", "(1,1) - S")]
-        [DataRow(1, 1, "S", "l", "(1,1) - E")]
-        [DataRow(1, 1, "E", "l", "(1,1) - N")]
-        public void RoverShouldTurnLeftWhenLeftCommandIsReceived(int startingX, int startingY, string direction, string command, string expectedResult)
+        [DataRow(1, 1, "N", "l", "Rover at (1,1) facing W")]
+        [DataRow(1, 1, "W", "l", "Rover at (1,1) facing S")]
+        [DataRow(1, 1, "S", "l", "Rover at (1,1) facing E")]
+        [DataRow(1, 1, "E", "l", "Rover at (1,1) facing N")]
+        public void RoverShouldTurnLeftWhenLeftCommandIsReceived(int startingX, int startingY, string direction, string command, string expectedReport)
         {
             var rover = new Rover(new Coordinate(startingX, startingY), direction, _grid10By15);
 
             var report = rover.ExecuteCommandsAndReport(command);
 
-            Assert.AreEqual(expectedResult, report);
+            Assert.AreEqual(expectedReport, report);
         }
 
         [DataTestMethod]
-        [DataRow(1, 1, "N", "r", "(1,1) - E")]
-        [DataRow(1, 1, "W", "r", "(1,1) - N")]
-        [DataRow(1, 1, "S", "r", "(1,1) - W")]
-        [DataRow(1, 1, "E", "r", "(1,1) - S")]
-        public void RoverShouldTurnRightWhenRightCommandIsReceived(int startingX, int startingY, string direction, string command, string expectedResult)
+        [DataRow(1, 1, "N", "r", "Rover at (1,1) facing E")]
+        [DataRow(1, 1, "W", "r", "Rover at (1,1) facing N")]
+        [DataRow(1, 1, "S", "r", "Rover at (1,1) facing W")]
+        [DataRow(1, 1, "E", "r", "Rover at (1,1) facing S")]
+        public void RoverShouldTurnRightWhenRightCommandIsReceived(int startingX, int startingY, string direction, string command, string expectedReport)
         {
             var rover = new Rover(new Coordinate(startingX, startingY), direction, _grid10By15);
 
             var report = rover.ExecuteCommandsAndReport(command);
 
-            Assert.AreEqual(expectedResult, report);
+            Assert.AreEqual(expectedReport, report);
         }
 
         [DataTestMethod]
-        [DataRow(1, 1, "S", "f", "(1,15) - S")]
-        [DataRow(1, 15, "N", "f", "(1,1) - N")]
-        [DataRow(1, 1, "N", "b", "(1,15) - N")]
-        [DataRow(1, 15, "S", "b", "(1,1) - S")]
-        public void RoverShouldContinueToMoveVerticallyWhenArrivingAtTheEdge(int startingX, int startingY, string direction, string command, string expectedResult)
+        [DataRow(1, 1, "S", "f", "Rover at (1,15) facing S")]
+        [DataRow(1, 15, "N", "f", "Rover at (1,1) facing N")]
+        [DataRow(1, 1, "N", "b", "Rover at (1,15) facing N")]
+        [DataRow(1, 15, "S", "b", "Rover at (1,1) facing S")]
+        public void RoverShouldContinueToMoveVerticallyWhenArrivingAtTheEdge(int startingX, int startingY, string direction, string command, string expectedReport)
         {
             var rover = new Rover(new Coordinate(startingX, startingY), direction, _grid10By15);
 
             var report = rover.ExecuteCommandsAndReport(command);
 
-            Assert.AreEqual(expectedResult, report);
+            Assert.AreEqual(expectedReport, report);
         }
 
         [DataTestMethod]
-        [DataRow(1, 1, "W", "f", "(10,1) - W")]
-        [DataRow(10, 1, "E", "f", "(1,1) - E")]
-        [DataRow(1, 1, "E", "b", "(10,1) - E")]
-        [DataRow(10, 1, "W", "b", "(1,1) - W")]
-        public void RoverShouldContinueToMoveHorizontallyWhenArrivingAtTheEdge(int startingX, int startingY, string direction, string command, string expectedResult)
+        [DataRow(1, 1, "W", "f", "Rover at (10,1) facing W")]
+        [DataRow(10, 1, "E", "f", "Rover at (1,1) facing E")]
+        [DataRow(1, 1, "E", "b", "Rover at (10,1) facing E")]
+        [DataRow(10, 1, "W", "b", "Rover at (1,1) facing W")]
+        public void RoverShouldContinueToMoveHorizontallyWhenArrivingAtTheEdge(int startingX, int startingY, string direction, string command, string expectedReport)
         {
             var rover = new Rover(new Coordinate(startingX, startingY), direction, _grid10By15);
 
             var report = rover.ExecuteCommandsAndReport(command);
 
-            Assert.AreEqual(expectedResult, report);
+            Assert.AreEqual(expectedReport, report);
+        }
+
+        [TestMethod]
+        [DataRow(1, 1, "E", "f", "Obstacle (2,1) - Rover at (1,1) facing E")]
+        [DataRow(1, 1, "E", "fffbl", "Obstacle (2,1) - Rover at (1,1) facing E")]
+        [DataRow(1, 1, "E", "bfff", "Obstacle (2,1) - Rover at (1,1) facing E")]
+        public void RoverShouldStopAndReportWhenObstacleIsMet(int startingX, int startingY, string direction, string command, string expectedReport)
+        {
+            var rover = new Rover(new Coordinate(startingX, startingY), direction, _grid10By15WithObstacles);
+
+            var report = rover.ExecuteCommandsAndReport(command);
+
+            Assert.AreEqual(expectedReport, report);
         }
     }
 }
