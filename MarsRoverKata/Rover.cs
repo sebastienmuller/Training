@@ -4,13 +4,13 @@
     {
         private int _positionY;
         private int _positionX;
-        string _direction;
+        Orientation _orientation;
 
         public Rover(int startingX, int startingY, string direction)
         {
             _positionY = startingY;
             _positionX = startingX;
-            _direction = direction;
+            _orientation = new Orientation(direction);
         }
 
         public void ExecuteCommand(string commands)
@@ -27,30 +27,30 @@
                 }
                 else if (command == 'l')
                 {
-                    TurnLeft();
+                    _orientation.TurnLeft();
                 }
                 else if (command == 'r')
                 {
-                    TurnRight();
+                    _orientation.TurnRight();
                 }
             }
         }
 
         private void MoveForward()
         {
-            if (_direction == "N")
+            if (_orientation.CurrentDirection == "N")
             {
                 _positionY++;
             }
-            else if (_direction == "S")
+            else if (_orientation.CurrentDirection == "S")
             {
                 _positionY--;
             }
-            else if (_direction == "E")
+            else if (_orientation.CurrentDirection == "E")
             {
                 _positionX++;
             }
-            else if (_direction == "O")
+            else if (_orientation.CurrentDirection == "O")
             {
                 _positionX--;
             }
@@ -58,67 +58,27 @@
 
         private void MoveBackward()
         {
-            if (_direction == "N")
+            if (_orientation.CurrentDirection == "N")
             {
                 _positionY--;
             }
-            else if (_direction == "S")
+            else if (_orientation.CurrentDirection == "S")
             {
                 _positionY++;
             }
-            else if (_direction == "E")
+            else if (_orientation.CurrentDirection == "E")
             {
                 _positionX--;
             }
-            else if (_direction == "O")
+            else if (_orientation.CurrentDirection == "O")
             {
                 _positionX++;
             }
         }
 
-        private void TurnLeft()
-        {
-            if (_direction == "N")
-            {
-                _direction = "W";
-            }
-            else if (_direction == "W")
-            {
-                _direction = "S";
-            }
-            else if (_direction == "S")
-            {
-                _direction = "E";
-            }
-            else if (_direction == "E")
-            {
-                _direction = "N";
-            }
-        }
-
-        private void TurnRight()
-        {
-            if (_direction == "N")
-            {
-                _direction = "E";
-            }
-            else if (_direction == "W")
-            {
-                _direction = "N";
-            }
-            else if (_direction == "S")
-            {
-                _direction = "W";
-            }
-            else if (_direction == "E")
-            {
-                _direction = "S";
-            }
-        }
-
         public override string ToString()
         {
-            return $"({_positionX},{_positionY}) - {_direction}";
+            return $"({_positionX},{_positionY}) - {_orientation.CurrentDirection}";
         }
     }
 }
