@@ -27,11 +27,11 @@ namespace MarsRoverKataTests
         [DataRow(4, 1, "W", "f", "(3,1) - W")]
         public void RoverShouldMoveForwardWhenForwardCommandIsReceived(int startingX, int startingY, string direction, string command, string expectedResult)
         {
-            var rover = new Rover(startingX, startingY, direction, _grid10By15);
+            var rover = new Rover(new Coordinate(startingX, startingY), direction, _grid10By15);
             
-            rover.ExecuteCommand(command);
+            var report = rover.ExecuteCommandsAndReport(command);
             
-            Assert.AreEqual(expectedResult, rover.ToString());
+            Assert.AreEqual(expectedResult, report);
         }
 
         [DataTestMethod]
@@ -41,11 +41,11 @@ namespace MarsRoverKataTests
         [DataRow(1, 1, "W", "b", "(2,1) - W")]
         public void RoverShouldMoveBackwardWhenBackwardCommandIsReceived(int startingX, int startingY, string direction, string command, string expectedResult)
         {
-            var rover = new Rover(startingX, startingY, direction, _grid10By15);
+            var rover = new Rover(new Coordinate(startingX, startingY), direction, _grid10By15);
 
-            rover.ExecuteCommand(command);
+            var report = rover.ExecuteCommandsAndReport(command);
 
-            Assert.AreEqual(expectedResult, rover.ToString());
+            Assert.AreEqual(expectedResult, report);
         }
 
         [DataTestMethod]
@@ -55,11 +55,11 @@ namespace MarsRoverKataTests
         [DataRow(1, 1, "E", "l", "(1,1) - N")]
         public void RoverShouldTurnLeftWhenLeftCommandIsReceived(int startingX, int startingY, string direction, string command, string expectedResult)
         {
-            var rover = new Rover(startingX, startingY, direction, _grid10By15);
+            var rover = new Rover(new Coordinate(startingX, startingY), direction, _grid10By15);
 
-            rover.ExecuteCommand(command);
+            var report = rover.ExecuteCommandsAndReport(command);
 
-            Assert.AreEqual(expectedResult, rover.ToString());
+            Assert.AreEqual(expectedResult, report);
         }
 
         [DataTestMethod]
@@ -69,11 +69,11 @@ namespace MarsRoverKataTests
         [DataRow(1, 1, "E", "r", "(1,1) - S")]
         public void RoverShouldTurnRightWhenRightCommandIsReceived(int startingX, int startingY, string direction, string command, string expectedResult)
         {
-            var rover = new Rover(startingX, startingY, direction, _grid10By15);
+            var rover = new Rover(new Coordinate(startingX, startingY), direction, _grid10By15);
 
-            rover.ExecuteCommand(command);
+            var report = rover.ExecuteCommandsAndReport(command);
 
-            Assert.AreEqual(expectedResult, rover.ToString());
+            Assert.AreEqual(expectedResult, report);
         }
 
         [DataTestMethod]
@@ -83,11 +83,11 @@ namespace MarsRoverKataTests
         [DataRow(1, 15, "S", "b", "(1,1) - S")]
         public void RoverShouldContinueToMoveVerticallyWhenArrivingAtTheEdge(int startingX, int startingY, string direction, string command, string expectedResult)
         {
-            var rover = new Rover(startingX, startingY, direction, _grid10By15);
+            var rover = new Rover(new Coordinate(startingX, startingY), direction, _grid10By15);
 
-            rover.ExecuteCommand(command);
+            var report = rover.ExecuteCommandsAndReport(command);
 
-            Assert.AreEqual(expectedResult, rover.ToString());
+            Assert.AreEqual(expectedResult, report);
         }
 
         [DataTestMethod]
@@ -97,11 +97,11 @@ namespace MarsRoverKataTests
         [DataRow(10, 1, "W", "b", "(1,1) - W")]
         public void RoverShouldContinueToMoveHorizontallyWhenArrivingAtTheEdge(int startingX, int startingY, string direction, string command, string expectedResult)
         {
-            var rover = new Rover(startingX, startingY, direction, _grid10By15);
+            var rover = new Rover(new Coordinate(startingX, startingY), direction, _grid10By15);
 
-            rover.ExecuteCommand(command);
+            var report = rover.ExecuteCommandsAndReport(command);
 
-            Assert.AreEqual(expectedResult, rover.ToString());
+            Assert.AreEqual(expectedResult, report);
         }
     }
 }

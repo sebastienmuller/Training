@@ -1,41 +1,53 @@
-﻿namespace MarsRoverKata
+﻿using System.Drawing;
+
+namespace MarsRoverKata
 {
     public class Rover
     {
-        private int _positionY;
-        private int _positionX;
-        Orientation _orientation;
-        Grid _grid;
+        private Coordinate _coordinate;
+        readonly Orientation _orientation;
+        private readonly Grid _grid;
 
-        public Rover(int startingX, int startingY, string direction, Grid grid)
+        public Rover(Coordinate intialCoordinate, string direction, Grid grid)
         {
-            _positionY = startingY;
-            _positionX = startingX;
+            _coordinate = intialCoordinate;
             _orientation = new Orientation(direction);
             _grid = grid;
         }
 
-        public void ExecuteCommand(string commands)
+        public string ExecuteCommandsAndReport(string commands)
         {
             foreach (var command in commands)
             {
-                if (command == 'f')
-                {
-                    MoveForward();
-                }
-                else if (command == 'b')
-                {
-                    MoveBackward();
-                }
-                else if (command == 'l')
-                {
-                    _orientation.TurnLeft();
-                }
-                else if (command == 'r')
-                {
-                    _orientation.TurnRight();
-                }
+                ExecuteCommand(command);
             }
+
+            return GetReport();
+        }
+
+        private void ExecuteCommand(char command)
+        {
+            if (command == 'f')
+            {
+                MoveForward();
+            }
+            else if (command == 'b')
+            {
+                MoveBackward();
+            }
+            else if (command == 'l')
+            {
+                _orientation.TurnLeft();
+            }
+            else if (command == 'r')
+            {
+                _orientation.TurnRight();
+            }
+        }
+
+        private string GetReport()
+        {
+            return $"({_coordinate.X},{_coordinate.Y}) - {_orientation.Direction}";
         }
 
         private void MoveForward()
@@ -80,47 +92,42 @@
 
         private void MoveUp()
         {
-            if(_positionY == _grid.MaxHeight)
+            if(_coordinate.Y == _grid.MaxHeight)
             {
-                _positionY = 1;
+                _coordinate = new Coordinate(_coordinate.X, 1);
                 return;
             }
-            _positionY++;
+            _coordinate = new Coordinate(_coordinate.X, _coordinate.Y + 1);
         }
 
         private void MoveDown()
         {
-            if (_positionY == 1)
+            if (_coordinate.Y == 1)
             {
-                _positionY = _grid.MaxHeight;
+                _coordinate = new Coordinate(_coordinate.X, _grid.MaxHeight);
                 return;
             }
-            _positionY--;
+            _coordinate = new Coordinate(_coordinate.X, _coordinate.Y - 1);
         }
 
         private void MoveLeft()
         {
-            if (_positionX == 1)
+            if (_coordinate.X == 1)
             {
-                _positionX = _grid.MaxWidth;
+                _coordinate = new Coordinate(_grid.MaxWidth, _coordinate.Y);
                 return;
             }
-            _positionX--;
+            _coordinate = new Coordinate(_coordinate.X - 1, _coordinate.Y);
         }
 
         private void MoveRight()
         {
-            if (_positionX == _grid.MaxWidth)
+            if (_coordinate.X == _grid.MaxWidth)
             {
-                _positionX = 1;
+                _coordinate = new Coordinate(1, _coordinate.Y);
                 return;
             }
-            _positionX++;
-        }
-
-        public override string ToString()
-        {
-            return $"({_positionX},{_positionY}) - {_orientation.Direction}";
+            _coordinate = new Coordinate(_coordinate.X + 1, _coordinate.Y);
         }
     }
 }
