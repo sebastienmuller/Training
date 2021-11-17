@@ -23,23 +23,28 @@
                 }
                 else if (command == 'l')
                 {
-                    if (_direction == "N")
-                    {
-                        _direction = "W";
-                    }
-                    else if (_direction == "W")
-                    {
-                        _direction = "S";
-                    }
-                    else if (_direction == "S")
-                    {
-                        _direction = "E";
-                    }
-                    else if (_direction == "E")
-                    {
-                        _direction = "N";
-                    }
+                    TurnLeft();
                 }
+            }
+        }
+
+        private void TurnLeft()
+        {
+            if (_direction == "N")
+            {
+                _direction = "W";
+            }
+            else if (_direction == "W")
+            {
+                _direction = "S";
+            }
+            else if (_direction == "S")
+            {
+                _direction = "E";
+            }
+            else if (_direction == "E")
+            {
+                _direction = "N";
             }
         }
 
