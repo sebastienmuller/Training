@@ -2,6 +2,9 @@
 {
     public class Rover
     {
+        private const int MaxHeight = 15;
+        private const int MaxWidth = 10;
+
         private int _positionY;
         private int _positionX;
         Orientation _orientation;
@@ -40,19 +43,19 @@
         {
             if (_orientation.Direction == "N")
             {
-                _positionY++;
+                MoveUp();
             }
             else if (_orientation.Direction == "S")
             {
-                _positionY--;
+                MoveDown();
             }
             else if (_orientation.Direction == "E")
             {
-                _positionX++;
+                MoveRight();
             }
             else if (_orientation.Direction == "O")
             {
-                _positionX--;
+                MoveLeft();
             }
         }
 
@@ -60,20 +63,50 @@
         {
             if (_orientation.Direction == "N")
             {
-                _positionY--;
+                MoveDown();
             }
             else if (_orientation.Direction == "S")
             {
-                _positionY++;
+                MoveUp();
             }
             else if (_orientation.Direction == "E")
             {
-                _positionX--;
+                MoveLeft();
             }
             else if (_orientation.Direction == "O")
             {
-                _positionX++;
+                MoveRight();
             }
+        }
+
+        private void MoveUp()
+        {
+            if(_positionY == MaxHeight)
+            {
+                _positionY = 1;
+                return;
+            }
+            _positionY++;
+        }
+
+        private void MoveDown()
+        {
+            if (_positionY == 1)
+            {
+                _positionY = MaxHeight;
+                return;
+            }
+            _positionY--;
+        }
+
+        private void MoveLeft()
+        {
+            _positionX--;
+        }
+
+        private void MoveRight()
+        {
+            _positionX++;
         }
 
         public override string ToString()
