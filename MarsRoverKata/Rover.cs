@@ -19,7 +19,22 @@
             {
                 if (command == 'f')
                 {
-                    _positionY++;
+                    if (_direction == "N")
+                    {
+                        _positionY++;
+                    }
+                    else if(_direction == "S")
+                    {
+                        _positionY--;
+                    }
+                    else if(_direction == "E")
+                    {
+                        _positionX++;
+                    }
+                    else if (_direction == "O")
+                    {
+                        _positionX--;
+                    }
                 }
             }
         }
