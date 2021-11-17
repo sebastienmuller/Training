@@ -22,7 +22,7 @@ namespace MarsRoverKataTests
         [DataRow(2, 2, "N", "ff", "(2,4) - N")]
         [DataRow(1, 4, "S", "f", "(1,3) - S")]
         [DataRow(1, 1, "E", "f", "(2,1) - E")]
-        [DataRow(4, 1, "O", "f", "(3,1) - O")]
+        [DataRow(4, 1, "W", "f", "(3,1) - W")]
         public void RoverShouldMoveForwardWhenForwardCommandIsReceived(int startingX, int startingY, string direction, string command, string expectedResult)
         {
             var rover = new Rover(startingX, startingY, direction);
@@ -36,7 +36,7 @@ namespace MarsRoverKataTests
         [DataRow(1, 2, "N", "b", "(1,1) - N")]
         [DataRow(1, 2, "S", "b", "(1,3) - S")]
         [DataRow(5, 2, "E", "b", "(4,2) - E")]
-        [DataRow(1, 1, "O", "b", "(2,1) - O")]
+        [DataRow(1, 1, "W", "b", "(2,1) - W")]
         public void RoverShouldMoveBackwardWhenBackwardCommandIsReceived(int startingX, int startingY, string direction, string command, string expectedResult)
         {
             var rover = new Rover(startingX, startingY, direction);
@@ -80,6 +80,20 @@ namespace MarsRoverKataTests
         [DataRow(1, 1, "N", "b", "(1,15) - N")]
         [DataRow(1, 15, "S", "b", "(1,1) - S")]
         public void RoverShouldContinueToMoveVerticallyWhenArrivingAtTheEdge(int startingX, int startingY, string direction, string command, string expectedResult)
+        {
+            var rover = new Rover(startingX, startingY, direction);
+
+            rover.ExecuteCommand(command);
+
+            Assert.AreEqual(expectedResult, rover.ToString());
+        }
+
+        [DataTestMethod]
+        [DataRow(1, 1, "W", "f", "(10,1) - W")]
+        [DataRow(10, 1, "E", "f", "(1,1) - E")]
+        [DataRow(1, 1, "E", "b", "(10,1) - E")]
+        [DataRow(10, 1, "W", "b", "(1,1) - W")]
+        public void RoverShouldContinueToMoveHorizontallyWhenArrivingAtTheEdge(int startingX, int startingY, string direction, string command, string expectedResult)
         {
             var rover = new Rover(startingX, startingY, direction);
 

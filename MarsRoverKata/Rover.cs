@@ -53,7 +53,7 @@
             {
                 MoveRight();
             }
-            else if (_orientation.Direction == "O")
+            else if (_orientation.Direction == "W")
             {
                 MoveLeft();
             }
@@ -73,7 +73,7 @@
             {
                 MoveLeft();
             }
-            else if (_orientation.Direction == "O")
+            else if (_orientation.Direction == "W")
             {
                 MoveRight();
             }
@@ -101,11 +101,21 @@
 
         private void MoveLeft()
         {
+            if (_positionX == 1)
+            {
+                _positionX = MaxWidth;
+                return;
+            }
             _positionX--;
         }
 
         private void MoveRight()
         {
+            if (_positionX == MaxWidth)
+            {
+                _positionX = 1;
+                return;
+            }
             _positionX++;
         }
 
