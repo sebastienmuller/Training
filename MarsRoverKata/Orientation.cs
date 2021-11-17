@@ -2,51 +2,34 @@
 {
     public class Orientation
     {
-        public string CurrentDirection { get; set; }
+        public string Direction { get; set; }
+        private static readonly List<string> Directions = new() { "N", "E", "S", "W" };
 
         public Orientation(string direction)
         {
-            CurrentDirection = direction;
+            Direction = direction;
         }
 
         public void TurnLeft()
         {
-            if (CurrentDirection == "N")
+            var newDirectionIndex = Directions.IndexOf(Direction);
+            if (newDirectionIndex == 0)
             {
-                CurrentDirection = "W";
+                newDirectionIndex = Directions.Count;
             }
-            else if (CurrentDirection == "W")
-            {
-                CurrentDirection = "S";
-            }
-            else if (CurrentDirection == "S")
-            {
-                CurrentDirection = "E";
-            }
-            else if (CurrentDirection == "E")
-            {
-                CurrentDirection = "N";
-            }
+            newDirectionIndex--;
+            Direction = Directions[newDirectionIndex];
         }
 
         public void TurnRight()
         {
-            if (CurrentDirection == "N")
+            var newDirectionIndex = Directions.IndexOf(Direction) + 1;
+
+            if (newDirectionIndex == Directions.Count)
             {
-                CurrentDirection = "E";
+                newDirectionIndex = 0;
             }
-            else if (CurrentDirection == "W")
-            {
-                CurrentDirection = "N";
-            }
-            else if (CurrentDirection == "S")
-            {
-                CurrentDirection = "W";
-            }
-            else if (CurrentDirection == "E")
-            {
-                CurrentDirection = "S";
-            }
+            Direction = Directions[newDirectionIndex];
         }
     }
 }

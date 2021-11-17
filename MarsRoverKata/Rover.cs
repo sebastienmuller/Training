@@ -38,19 +38,19 @@
 
         private void MoveForward()
         {
-            if (_orientation.CurrentDirection == "N")
+            if (_orientation.Direction == "N")
             {
                 _positionY++;
             }
-            else if (_orientation.CurrentDirection == "S")
+            else if (_orientation.Direction == "S")
             {
                 _positionY--;
             }
-            else if (_orientation.CurrentDirection == "E")
+            else if (_orientation.Direction == "E")
             {
                 _positionX++;
             }
-            else if (_orientation.CurrentDirection == "O")
+            else if (_orientation.Direction == "O")
             {
                 _positionX--;
             }
@@ -58,19 +58,19 @@
 
         private void MoveBackward()
         {
-            if (_orientation.CurrentDirection == "N")
+            if (_orientation.Direction == "N")
             {
                 _positionY--;
             }
-            else if (_orientation.CurrentDirection == "S")
+            else if (_orientation.Direction == "S")
             {
                 _positionY++;
             }
-            else if (_orientation.CurrentDirection == "E")
+            else if (_orientation.Direction == "E")
             {
                 _positionX--;
             }
-            else if (_orientation.CurrentDirection == "O")
+            else if (_orientation.Direction == "O")
             {
                 _positionX++;
             }
@@ -78,7 +78,7 @@
 
         public override string ToString()
         {
-            return $"({_positionX},{_positionY}) - {_orientation.CurrentDirection}";
+            return $"({_positionX},{_positionY}) - {_orientation.Direction}";
         }
     }
 }
