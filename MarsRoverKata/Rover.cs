@@ -42,6 +42,18 @@
                     {
                         _positionY--;
                     }
+                    else if (_direction == "S")
+                    {
+                        _positionY++;
+                    }
+                    else if (_direction == "E")
+                    {
+                        _positionX--;
+                    }
+                    else if (_direction == "O")
+                    {
+                        _positionX++;
+                    }
                 }
             }
         }

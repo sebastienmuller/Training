@@ -34,6 +34,9 @@ namespace MarsRoverKataTests
 
         [DataTestMethod]
         [DataRow(1, 2, "N", "b", "(1,1) - N")]
+        [DataRow(1, 2, "S", "b", "(1,3) - S")]
+        [DataRow(5, 2, "E", "b", "(4,2) - E")]
+        [DataRow(1, 1, "O", "b", "(2,1) - O")]
         public void RoverShouldMoveBackwardWhenBackwardCommandIsReceived(int startingX, int startingY, string direction, string command, string expectedResult)
         {
             var rover = new Rover(startingX, startingY, direction);
