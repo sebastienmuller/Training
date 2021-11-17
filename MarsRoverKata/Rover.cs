@@ -2,13 +2,27 @@
 {
     public class Rover
     {
+        private int positionY;
+
         public Rover()
         {
+            positionY = 1;
         }
 
-        public void ExecuteCommand(string command)
+        public void ExecuteCommand(string commands)
         {
-            throw new NotImplementedException();
+            foreach (var command in commands)
+            {
+                if (command == 'f')
+                {
+                    positionY++;
+                }
+            }
+        }
+
+        public override string ToString()
+        {
+            return $"(1,{positionY}) - N";
         }
     }
 }
