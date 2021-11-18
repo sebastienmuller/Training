@@ -21,12 +21,12 @@ namespace TellDontAskKata.Main.UseCase
         {
             var order = _orderRepository.GetById(request.OrderId);
 
-            if (order.Status == OrderStatus.Created || order.Status == OrderStatus.Rejected)
+            if (order.IsCreated() || order.IsRejected())
             {
                 throw new OrderCannotBeShippedException();
             }
 
-            if (order.Status == OrderStatus.Shipped)
+            if (order.IsShipped())
             {
                 throw new OrderCannotBeShippedTwiceException();
             }
