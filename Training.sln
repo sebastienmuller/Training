@@ -5,9 +5,13 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Katas", "Katas", "{83CAD9B4-4E49-402B-9C93-9F4B1E69B231}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarsRoverKata", "MarsRoverKata\MarsRoverKata.csproj", "{38398523-01F3-4993-B74C-B5DD803DE85D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarsRoverKata", "MarsRoverKata\MarsRoverKata.csproj", "{38398523-01F3-4993-B74C-B5DD803DE85D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarsRoverKataTests", "MarsRoverKataTests\MarsRoverKataTests.csproj", "{A9BF76CA-8366-458F-B753-90D11C965B73}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarsRoverKataTests", "MarsRoverKataTests\MarsRoverKataTests.csproj", "{A9BF76CA-8366-458F-B753-90D11C965B73}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TellDontAskKata.Main", "TellDontAskKata.Main\TellDontAskKata.Main.csproj", "{AFA544D7-EFBE-4D56-BF78-2E3AE6C9CA9F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TellDontAskKata.Tests", "TellDontAskKata.Tests\TellDontAskKata.Tests.csproj", "{A10A6099-705E-47D4-A660-889327F33F3B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +27,14 @@ Global
 		{A9BF76CA-8366-458F-B753-90D11C965B73}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9BF76CA-8366-458F-B753-90D11C965B73}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9BF76CA-8366-458F-B753-90D11C965B73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFA544D7-EFBE-4D56-BF78-2E3AE6C9CA9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFA544D7-EFBE-4D56-BF78-2E3AE6C9CA9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFA544D7-EFBE-4D56-BF78-2E3AE6C9CA9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFA544D7-EFBE-4D56-BF78-2E3AE6C9CA9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A10A6099-705E-47D4-A660-889327F33F3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A10A6099-705E-47D4-A660-889327F33F3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A10A6099-705E-47D4-A660-889327F33F3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A10A6099-705E-47D4-A660-889327F33F3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -30,6 +42,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{38398523-01F3-4993-B74C-B5DD803DE85D} = {83CAD9B4-4E49-402B-9C93-9F4B1E69B231}
 		{A9BF76CA-8366-458F-B753-90D11C965B73} = {83CAD9B4-4E49-402B-9C93-9F4B1E69B231}
+		{AFA544D7-EFBE-4D56-BF78-2E3AE6C9CA9F} = {83CAD9B4-4E49-402B-9C93-9F4B1E69B231}
+		{A10A6099-705E-47D4-A660-889327F33F3B} = {83CAD9B4-4E49-402B-9C93-9F4B1E69B231}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A0BF2658-03DC-4412-A6FD-B1B887B518E7}
