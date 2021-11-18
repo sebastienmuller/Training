@@ -2,19 +2,19 @@
 
 namespace TellDontAskKata.Main.UseCase
 {
-    public class OrderApprovalUseCase
+    public class OrderRejectionUseCase
     {
         private readonly IOrderRepository _orderRepository;
-        public OrderApprovalUseCase(IOrderRepository orderRepository)
+        public OrderRejectionUseCase(IOrderRepository orderRepository)
         {
             _orderRepository = orderRepository;
         }
 
-        public void Run(OrderApprovalRequest request)
+        public void Run(OrderRejectionRequest request)
         {
             var order = _orderRepository.GetById(request.OrderId);
 
-            order.Approve();
+            order.Reject();
            
             _orderRepository.Save(order);
         }

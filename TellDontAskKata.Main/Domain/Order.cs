@@ -12,24 +12,28 @@ namespace TellDontAskKata.Main.Domain
         public OrderStatus Status { get; set; }
         public int Id { get; set; }
 
-        public void Approve(bool approve)
+        public void Approve()
         {
-            if (IsShipped())
-            {
-                throw new ShippedOrdersCannotBeChangedException();
-            }
+            EnsureIsNotAlreadyShipped();
 
-            if (approve && IsRejected())
+            if (IsRejected())
             {
                 throw new RejectedOrderCannotBeApprovedException();
             }
 
-            if (!approve && IsApproved())
+            Status = OrderStatus.Approved;
+        }
+
+        public void Reject()
+        {
+            EnsureIsNotAlreadyShipped();
+            
+            if (IsApproved())
             {
                 throw new ApprovedOrderCannotBeRejectedException();
             }
 
-            Status = approve ? OrderStatus.Approved : OrderStatus.Rejected;
+            Status = OrderStatus.Rejected;
         }
 
         public void EnsureCanBeShipped()
@@ -68,6 +72,14 @@ namespace TellDontAskKata.Main.Domain
         private bool IsCreated()
         {
             return Status == OrderStatus.Created;
+        }
+
+        private void EnsureIsNotAlreadyShipped()
+        {
+            if (IsShipped())
+            {
+                throw new ShippedOrdersCannotBeChangedException();
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace TellDontAskKata.Main.UseCase
 {
-    public class OrderApprovalRequest
+    public class OrderRejectionRequest
     {
         public int OrderId { get; set; }
     }
