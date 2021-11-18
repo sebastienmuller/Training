@@ -12,6 +12,15 @@ namespace TellDontAskKata.Main.Domain
         public OrderStatus Status { get; set; }
         public int Id { get; set; }
 
+        public Order()
+        {
+            Status = OrderStatus.Created;
+            Items = new List<OrderItem>();
+            Currency = "EUR";
+            Total = 0m;
+            Tax = 0m;
+        }
+
         public void Approve()
         {
             EnsureIsNotAlreadyShipped();
