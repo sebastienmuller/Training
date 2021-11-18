@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TellDontAskKata.Main.UseCase;
 
 namespace TellDontAskKata.Main.Domain
 {
@@ -11,22 +12,60 @@ namespace TellDontAskKata.Main.Domain
         public OrderStatus Status { get; set; }
         public int Id { get; set; }
 
-        public bool IsRejected()
+        public void Approve(bool approve)
         {
-            return Status == OrderStatus.Rejected;
+            if (IsShipped())
+            {
+                throw new ShippedOrdersCannotBeChangedException();
+            }
+
+            if (approve && IsRejected())
+            {
+                throw new RejectedOrderCannotBeApprovedException();
+            }
+
+            if (!approve && IsApproved())
+            {
+                throw new ApprovedOrderCannotBeRejectedException();
+            }
+
+            Status = approve ? OrderStatus.Approved : OrderStatus.Rejected;
         }
 
-        public bool IsApproved()
+        public void EnsureCanBeShipped()
         {
-            return Status == OrderStatus.Approved;
+            if (IsCreated() || IsRejected())
+            {
+                throw new OrderCannotBeShippedException();
+            }
+
+            if (IsShipped())
+            {
+                throw new OrderCannotBeShippedTwiceException();
+            }
         }
 
-        public bool IsShipped()
+        public void Ship()
+        {
+            Status = OrderStatus.Shipped;
+        }
+
+        private bool IsShipped()
         {
             return Status == OrderStatus.Shipped;
         }
 
-        public bool IsCreated()
+        private bool IsRejected()
+        {
+            return Status == OrderStatus.Rejected;
+        }
+
+        private bool IsApproved()
+        {
+            return Status == OrderStatus.Approved;
+        }
+
+        private bool IsCreated()
         {
             return Status == OrderStatus.Created;
         }

@@ -15,22 +15,8 @@ namespace TellDontAskKata.Main.UseCase
         {
             var order = _orderRepository.GetById(request.OrderId);
 
-            if (order.IsShipped())
-            {
-                throw new ShippedOrdersCannotBeChangedException();
-            }
-
-            if (request.Approved && order.IsRejected())
-            {
-                throw new RejectedOrderCannotBeApprovedException();
-            }
-
-            if (!request.Approved && order.IsApproved())
-            {
-                throw new ApprovedOrderCannotBeRejectedException();
-            }
-
-            order.Status = request.Approved ? OrderStatus.Approved : OrderStatus.Rejected;
+            order.Approve(request.Approved);
+           
             _orderRepository.Save(order);
         }
     }
