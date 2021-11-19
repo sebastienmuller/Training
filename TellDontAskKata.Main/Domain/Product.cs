@@ -6,8 +6,8 @@
         public decimal Price { get; private set; }
         public Category Category { get; private set; }
         
-        private decimal UnitaryTaxedAmount { get; set; }
-        private decimal UnitaryTax { get; set; }
+        public decimal UnitaryTaxedAmount { get; private set; }
+        public decimal UnitaryTax { get; private set; }
 
         public Product(string name, decimal price, Category category)
         {
@@ -17,16 +17,6 @@
 
             UnitaryTax = GetUnitaryTax();
             UnitaryTaxedAmount = GetUnitaryTaxedAmount();
-        }
-
-        public decimal GetTaxAmount(int quantity)
-        {
-            return Round(UnitaryTax * quantity);
-        }
-
-        public decimal GetTaxedAmount(int quantity)
-        {
-            return Round(UnitaryTaxedAmount * quantity);
         }
 
         private decimal GetUnitaryTaxedAmount()

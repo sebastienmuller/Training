@@ -11,8 +11,8 @@
         {
             Product = product;
             Quantity = quantity;
-            TaxedAmount = product.GetTaxedAmount(quantity);
-            Tax = product.GetTaxAmount(quantity);
+            TaxedAmount = product.UnitaryTaxedAmount * quantity;
+            Tax = product.UnitaryTax * quantity;
         }
     }
 }
