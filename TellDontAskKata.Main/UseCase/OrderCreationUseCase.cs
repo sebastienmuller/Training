@@ -18,7 +18,7 @@ namespace TellDontAskKata.Main.UseCase
 
         public void Run(SellItemsRequest request)
         {
-            var order = new Order();
+            var order = new Order(1);
             
             foreach(var itemRequest in request.Requests){
                 var product = _productCatalog.GetByName(itemRequest.ProductName);

@@ -23,11 +23,7 @@ namespace TellDontAskKata.Tests.UseCase
         [Fact]
         public void ApprovedExistingOrder()
         {
-            var initialOrder = new Order
-            {
-                Status = OrderStatus.Created,
-                Id = 1
-            };
+            var initialOrder = new Order(1);
             _orderRepository.AddOrder(initialOrder);
 
             var request = new OrderApprovalRequest
@@ -44,11 +40,7 @@ namespace TellDontAskKata.Tests.UseCase
         [Fact]
         public void RejectedExistingOrder()
         {
-            var initialOrder = new Order
-            {
-                Status = OrderStatus.Created,
-                Id = 1
-            };
+            var initialOrder = new Order(1);
             _orderRepository.AddOrder(initialOrder);
 
             var request = new OrderRejectionRequest
@@ -66,11 +58,9 @@ namespace TellDontAskKata.Tests.UseCase
         [Fact]
         public void CannotApproveRejectedOrder()
         {
-            var initialOrder = new Order
-            {
-                Status = OrderStatus.Rejected,
-                Id = 1
-            };
+            var initialOrder = new Order(1);
+            initialOrder.Reject();
+
             _orderRepository.AddOrder(initialOrder);
 
             var request = new OrderApprovalRequest
@@ -88,11 +78,9 @@ namespace TellDontAskKata.Tests.UseCase
         [Fact]
         public void CannotRejectApprovedOrder()
         {
-            var initialOrder = new Order
-            {
-                Status = OrderStatus.Approved,
-                Id = 1
-            };
+            var initialOrder = new Order(1);
+            initialOrder.Approve();
+
             _orderRepository.AddOrder(initialOrder);
 
             var request = new OrderRejectionRequest
@@ -110,11 +98,9 @@ namespace TellDontAskKata.Tests.UseCase
         [Fact]
         public void ShippedOrdersCannotBeRejected()
         {
-            var initialOrder = new Order
-            {
-                Status = OrderStatus.Shipped,
-                Id = 1
-            };
+            var initialOrder = new Order(1);
+            initialOrder.Ship();
+
             _orderRepository.AddOrder(initialOrder);
 
             var request = new OrderRejectionRequest
