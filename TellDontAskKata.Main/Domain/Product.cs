@@ -2,10 +2,10 @@
 {
     public class Product
     {
+        private readonly Category _category;
+
         public string Name { get; private set; }
         public decimal Price { get; private set; }
-        public Category Category { get; private set; }
-        
         public decimal UnitaryTaxedAmount { get; private set; }
         public decimal UnitaryTax { get; private set; }
 
@@ -13,7 +13,7 @@
         {
             Name = name;
             Price = price;
-            Category = category;
+            _category = category;
 
             UnitaryTax = GetUnitaryTax();
             UnitaryTaxedAmount = GetUnitaryTaxedAmount();
@@ -26,7 +26,7 @@
 
         private decimal GetUnitaryTax()
         {
-            return Round((Price / 100m) * Category.TaxPercentage);
+            return Round((Price / 100m) * _category.TaxPercentage);
         }
 
         private static decimal Round(decimal amount)

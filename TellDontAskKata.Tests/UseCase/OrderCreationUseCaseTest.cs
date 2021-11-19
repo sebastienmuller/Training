@@ -16,10 +16,7 @@ namespace TellDontAskKata.Tests.UseCase
 
         public OrderCreationUseCaseTest()
         {
-            var food = new Category { 
-                Name = "food",
-                TaxPercentage = 10m
-            };
+            var food = new Category("food", 10m);
 
             _productCatalog = new InMemoryProductCatalog(new List<Product>
             {
@@ -36,22 +33,11 @@ namespace TellDontAskKata.Tests.UseCase
         [Fact]
         public void SellMultipleItems()
         {
-            var saladRequest = new SellItemRequest
-            {
-                ProductName = "salad",
-                Quantity = 2
-            };
+            var saladRequest = new SellItemRequest(2, "salad");
 
-            var tomatoRequest = new SellItemRequest
-            {
-                ProductName = "tomato",
-                Quantity = 3
-            };
+            var tomatoRequest = new SellItemRequest(3, "tomato");
 
-            var request = new SellItemsRequest
-            {
-                Requests = new List<SellItemRequest> { saladRequest, tomatoRequest }
-            };
+            var request = new SellItemsRequest(new List<SellItemRequest> { saladRequest, tomatoRequest });
 
             _useCase.Run(request);
 
@@ -76,12 +62,7 @@ namespace TellDontAskKata.Tests.UseCase
         [Fact]
         public void UnknownProduct()
         {
-            var request = new SellItemsRequest
-            {
-                Requests = new List<SellItemRequest> { 
-                    new SellItemRequest { ProductName = "unknown product"}
-                }
-            };
+            var request = new SellItemsRequest(new List<SellItemRequest> { new SellItemRequest(0, "unknown product") });
 
             Action actionToTest = () => _useCase.Run(request);
 

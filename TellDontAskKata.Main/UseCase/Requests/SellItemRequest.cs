@@ -2,7 +2,13 @@
 {
     public class SellItemRequest
     {
-        public int Quantity { get; set; }
-        public string ProductName { get; set; }
+        public int Quantity { get; private set; }
+        public string ProductName { get; private set; }
+
+        public SellItemRequest(int quantity, string productName)
+        {
+            Quantity = quantity;
+            ProductName = productName;
+        }
     }
 }

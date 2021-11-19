@@ -26,10 +26,7 @@ namespace TellDontAskKata.Tests.UseCase
             var initialOrder = new Order(1);
             _orderRepository.AddOrder(initialOrder);
 
-            var request = new OrderApprovalRequest
-            {
-                OrderId = 1
-            };
+            var request = new OrderApprovalRequest(1);
 
             _approvalUseCase.Run(request);
 
@@ -43,10 +40,7 @@ namespace TellDontAskKata.Tests.UseCase
             var initialOrder = new Order(1);
             _orderRepository.AddOrder(initialOrder);
 
-            var request = new OrderRejectionRequest
-            {
-                OrderId = 1
-            };
+            var request = new OrderRejectionRequest(1);
 
             _rejectionUseCase.Run(request);
 
@@ -63,10 +57,7 @@ namespace TellDontAskKata.Tests.UseCase
 
             _orderRepository.AddOrder(initialOrder);
 
-            var request = new OrderApprovalRequest
-            {
-                OrderId = 1
-            };
+            var request = new OrderApprovalRequest(1);
 
 
             Action actionToTest = () => _approvalUseCase.Run(request);
@@ -83,11 +74,7 @@ namespace TellDontAskKata.Tests.UseCase
 
             _orderRepository.AddOrder(initialOrder);
 
-            var request = new OrderRejectionRequest
-            {
-                OrderId = 1
-            };
-
+            var request = new OrderRejectionRequest(1);
 
             Action actionToTest = () => _rejectionUseCase.Run(request);
             
@@ -103,11 +90,7 @@ namespace TellDontAskKata.Tests.UseCase
 
             _orderRepository.AddOrder(initialOrder);
 
-            var request = new OrderRejectionRequest
-            {
-                OrderId = 1
-            };
-
+            var request = new OrderRejectionRequest(1);
 
             Action actionToTest = () => _rejectionUseCase.Run(request);
 

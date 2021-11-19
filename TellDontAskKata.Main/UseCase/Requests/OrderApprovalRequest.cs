@@ -2,6 +2,11 @@
 {
     public class OrderApprovalRequest
     {
-        public int OrderId { get; set; }
+        public int OrderId { get; private set; }
+
+        public OrderApprovalRequest(int orderId)
+        {
+            OrderId = orderId;
+        }
     }
 }
