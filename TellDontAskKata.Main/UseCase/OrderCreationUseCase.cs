@@ -30,7 +30,7 @@ namespace TellDontAskKata.Main.UseCase
                     productByName[itemRequest.ProductName] = product;
                 }
 
-                var orderItem = new OrderItem(product, itemRequest.Quantity);
+                var orderItem = OrderItem.Create(product, itemRequest.Quantity);
                 order.AddItem(orderItem);
             }
 
