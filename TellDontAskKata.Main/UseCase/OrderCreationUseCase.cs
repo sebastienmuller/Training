@@ -29,14 +29,8 @@ namespace TellDontAskKata.Main.UseCase
                 }
                 else
                 {
-                    var taxedAmount = product.GetTaxedAmount(itemRequest.Quantity);
-                    var taxAmount = product.GetTaxAmount(itemRequest.Quantity);
-
-                    var orderItem = new OrderItem(product, itemRequest.Quantity, taxedAmount, taxAmount);
-
-                    order.Items.Add(orderItem);
-                    order.Total += taxedAmount;
-                    order.Tax += taxAmount;
+                    var orderItem = new OrderItem(product, itemRequest.Quantity);
+                    order.AddItem(orderItem);
                 }
             }
 

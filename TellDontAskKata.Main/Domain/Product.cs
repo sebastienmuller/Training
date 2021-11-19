@@ -2,23 +2,36 @@
 {
     public class Product
     {
-        public string Name { get; set; }
-        public decimal Price { get; set; }
-        public Category Category { get; set; }
+        public string Name { get; private set; }
+        public decimal Price { get; private set; }
+        public Category Category { get; private set; }
+        
+        private decimal UnitaryTaxedAmount { get; set; }
+        private decimal UnitaryTax { get; set; }
+
+        public Product(string name, decimal price, Category category)
+        {
+            Name = name;
+            Price = price;
+            Category = category;
+
+            UnitaryTax = GetUnitaryTax();
+            UnitaryTaxedAmount = GetUnitaryTaxedAmount();
+        }
 
         public decimal GetTaxAmount(int quantity)
         {
-            return Round(GetUnitaryTax() * quantity);
+            return Round(UnitaryTax * quantity);
         }
 
         public decimal GetTaxedAmount(int quantity)
         {
-            return Round(GetUnitaryTaxedAmount() * quantity);
+            return Round(UnitaryTaxedAmount * quantity);
         }
 
         private decimal GetUnitaryTaxedAmount()
         {
-            return Round(Price + GetUnitaryTax());
+            return Round(Price + UnitaryTax);
         }
 
         private decimal GetUnitaryTax()

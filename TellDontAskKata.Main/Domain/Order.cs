@@ -21,6 +21,13 @@ namespace TellDontAskKata.Main.Domain
             Tax = 0m;
         }
 
+        public void AddItem(OrderItem item)
+        {
+            Items.Add(item);
+            Total += item.TaxedAmount;
+            Tax += item.Tax;
+        }
+
         public void Approve()
         {
             EnsureIsNotAlreadyShipped();

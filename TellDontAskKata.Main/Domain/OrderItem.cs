@@ -7,12 +7,12 @@
         public decimal TaxedAmount { get; private set; }
         public decimal Tax { get; private set; }
     
-        public OrderItem(Product product, int quantity, decimal taxedAmount, decimal tax)
+        public OrderItem(Product product, int quantity)
         {
             Product = product;
             Quantity = quantity;
-            TaxedAmount = taxedAmount;
-            Tax = tax;
+            TaxedAmount = product.GetTaxedAmount(quantity);
+            Tax = product.GetTaxAmount(quantity);
         }
     }
 }
