@@ -29,10 +29,8 @@ namespace TellDontAskKata.Main.UseCase
                 }
                 else
                 {
-                    var unitaryTax = Round((product.Price / 100m) * product.Category.TaxPercentage);
-                    var unitaryTaxedAmount = Round(product.Price + unitaryTax);
-                    var taxedAmount = Round(unitaryTaxedAmount * itemRequest.Quantity);
-                    var taxAmount = Round(unitaryTax * itemRequest.Quantity);
+                    var taxedAmount = product.GetTaxedAmount(itemRequest.Quantity);
+                    var taxAmount = product.GetTaxAmount(itemRequest.Quantity);
 
                     var orderItem = new OrderItem
                     {
@@ -48,11 +46,6 @@ namespace TellDontAskKata.Main.UseCase
             }
 
             _orderRepository.Save(order);
-        }
-
-        private static decimal Round(decimal amount)
-        {
-            return decimal.Round(amount, 2, System.MidpointRounding.ToPositiveInfinity);
         }
     }
 }
