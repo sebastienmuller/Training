@@ -32,13 +32,8 @@ namespace TellDontAskKata.Main.UseCase
                     var taxedAmount = product.GetTaxedAmount(itemRequest.Quantity);
                     var taxAmount = product.GetTaxAmount(itemRequest.Quantity);
 
-                    var orderItem = new OrderItem
-                    {
-                        Product = product,
-                        Quantity = itemRequest.Quantity,
-                        Tax = taxAmount,
-                        TaxedAmount = taxedAmount
-                    };
+                    var orderItem = new OrderItem(product, itemRequest.Quantity, taxedAmount, taxAmount);
+
                     order.Items.Add(orderItem);
                     order.Total += taxedAmount;
                     order.Tax += taxAmount;
