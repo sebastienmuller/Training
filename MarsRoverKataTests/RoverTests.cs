@@ -30,8 +30,9 @@ namespace MarsRoverKataTests
         public void RoverShouldMoveForwardWhenForwardCommandIsReceived(int startingX, int startingY, string direction, string command, string expectedReport)
         {
             var rover = new Rover(new Coordinate(startingX, startingY), direction, _grid10By15);
-            
-            var report = rover.ExecuteCommandsAndReport(command);
+
+            rover.ExecuteCommands(command);
+            var report = rover.GetReport();
             
             Assert.AreEqual(expectedReport, report);
         }
@@ -45,7 +46,8 @@ namespace MarsRoverKataTests
         {
             var rover = new Rover(new Coordinate(startingX, startingY), direction, _grid10By15);
 
-            var report = rover.ExecuteCommandsAndReport(command);
+            rover.ExecuteCommands(command);
+            var report = rover.GetReport();
 
             Assert.AreEqual(expectedReport, report);
         }
@@ -59,7 +61,8 @@ namespace MarsRoverKataTests
         {
             var rover = new Rover(new Coordinate(startingX, startingY), direction, _grid10By15);
 
-            var report = rover.ExecuteCommandsAndReport(command);
+            rover.ExecuteCommands(command);
+            var report = rover.GetReport();
 
             Assert.AreEqual(expectedReport, report);
         }
@@ -73,7 +76,8 @@ namespace MarsRoverKataTests
         {
             var rover = new Rover(new Coordinate(startingX, startingY), direction, _grid10By15);
 
-            var report = rover.ExecuteCommandsAndReport(command);
+            rover.ExecuteCommands(command);
+            var report = rover.GetReport();
 
             Assert.AreEqual(expectedReport, report);
         }
@@ -87,7 +91,8 @@ namespace MarsRoverKataTests
         {
             var rover = new Rover(new Coordinate(startingX, startingY), direction, _grid10By15);
 
-            var report = rover.ExecuteCommandsAndReport(command);
+            rover.ExecuteCommands(command);
+            var report = rover.GetReport();
 
             Assert.AreEqual(expectedReport, report);
         }
@@ -101,7 +106,8 @@ namespace MarsRoverKataTests
         {
             var rover = new Rover(new Coordinate(startingX, startingY), direction, _grid10By15);
 
-            var report = rover.ExecuteCommandsAndReport(command);
+            rover.ExecuteCommands(command);
+            var report = rover.GetReport();
 
             Assert.AreEqual(expectedReport, report);
         }
@@ -114,7 +120,8 @@ namespace MarsRoverKataTests
         {
             var rover = new Rover(new Coordinate(startingX, startingY), direction, _grid10By15WithObstacles);
 
-            var report = rover.ExecuteCommandsAndReport(command);
+            rover.ExecuteCommands(command);
+            var report = rover.GetReport();
 
             Assert.AreEqual(expectedReport, report);
         }
@@ -127,7 +134,8 @@ namespace MarsRoverKataTests
         {
             var rover = new Rover(new Coordinate(startingX, startingY), direction, _grid10By15);
 
-            var report = rover.ExecuteCommandsAndReport(command);
+            rover.ExecuteCommands(command);
+            var report = rover.GetReport();
 
             Assert.AreEqual(expectedReport, report);
         }

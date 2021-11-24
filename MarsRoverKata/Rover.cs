@@ -19,7 +19,7 @@ namespace MarsRoverKata
             _grid = grid;
         }
 
-        public string ExecuteCommandsAndReport(string commands)
+        public void ExecuteCommands(string commands)
         {
             ResetObstacleFlag();
             foreach (var command in commands)
@@ -35,8 +35,18 @@ namespace MarsRoverKata
                 
                 _coordinate = _nextCoordinate;
             }
+        }
 
-            return GetReport();
+        public string GetReport()
+        {
+            var obstacleReport = string.Empty;
+
+            if (_obstacleEncountered)
+            {
+                obstacleReport = $"Obstacle ({_nextCoordinate.X},{_nextCoordinate.Y}) - ";
+            }
+
+            return $"{obstacleReport}Rover at ({_coordinate.X},{_coordinate.Y}) facing {_orientation.Direction}";
         }
 
         private void DoesEncounterObstacle()
@@ -67,18 +77,6 @@ namespace MarsRoverKata
             {
                 _orientation.TurnRight();
             }
-        }
-
-        private string GetReport()
-        {
-            var obstacleReport = string.Empty;
-
-            if (_obstacleEncountered)
-            {
-                obstacleReport = $"Obstacle ({_nextCoordinate.X},{_nextCoordinate.Y}) - ";
-            }
-
-            return $"{obstacleReport}Rover at ({_coordinate.X},{_coordinate.Y}) facing {_orientation.Direction}";
         }
 
         private void MoveForward()
